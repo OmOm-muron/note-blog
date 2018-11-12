@@ -66,7 +66,7 @@ public class DAO implements AutoCloseable {
      * @return
      * @throws Exception
      */
-    public PreparedStatement getPreparedStatement(String sql)  throws Exception {
+    public PreparedStatement getPreparedStatement(String sql) throws Exception {
         return getConnection().prepareStatement(sql);
     }
     
