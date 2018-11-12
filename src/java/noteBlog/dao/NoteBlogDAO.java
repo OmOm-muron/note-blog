@@ -21,7 +21,7 @@ public class NoteBlogDAO extends DAO {
         //SQLを実行してその結果を取得する
         ResultSet rs = statement.executeQuery();
         
-        //検索結果の行数分、取得結果をGetListインスタンスへ格納する
+        //検索結果の行数分、取得結果をNetBlogインスタンスへ格納する
         while (rs.next()) {
             NoteBlog dto = new NoteBlog();
             
