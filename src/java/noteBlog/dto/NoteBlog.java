@@ -13,8 +13,7 @@ import java.util.*;
 public class NoteBlog {
     //フィールド：ブログ記事の情報
     private int id;
-    private String name;
-    private String fileName;
+    private String title;
     private Timestamp uploadDate;
     private String content;
     
@@ -23,12 +22,8 @@ public class NoteBlog {
         return this.id;
     }
     
-    public String getName() {
-        return this.name;
-    }
-    
-    public String getFileName() {
-        return this.fileName;
+    public String getTitle() {
+        return this.title;
     }
     
     public Timestamp getUploadDate() {
@@ -44,12 +39,8 @@ public class NoteBlog {
         this.id = id;
     }
     
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setTitle(String title) {
+        this.title = title;
     }
     
     public void setUploadDate(Timestamp uploadDate) {
