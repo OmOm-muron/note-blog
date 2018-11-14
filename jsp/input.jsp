@@ -30,21 +30,29 @@
                             <div class="col-6"><fmt:formatDate value="${dto.uploadDate}" pattern="yyyy-MM-dd"/></div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="edit" action="edit" method=POST">
-                                        <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-primary" value="Edit"/>
-                                    </form>
-                                    <form id="delete" action="delete" method=POST">
-                                        <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                    <form id="index" action="index" method="GET">
+                                        <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <h2><c:out value="${dto.title}"/></h2><br/>
-                            <p><c:out value="${dto.content}"/></p><br/>
-                        </div>
+                        </div><br/>
+                        <form id="write" action="write" method=POST">
+                            <div class="container">
+                                <div class="form-group">
+                                    <label for="title">Article Title</label>
+                                    <input type="text" class="form-group" id="title" name="title" value="${dto.title}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Article Content</label>
+                                    <textarea class="form-control" rows="30" id="content" name="content"><c:out value="${dto.content}"/></textarea>
+                                </div>
+                                <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
+                                <input type="submit" class="btn btn-primary" value="Submit"/>
+                            </div>
+                        </form><br/>
+                        <form id="index" action="index" method="GET">
+                            <input type="submit" class="btn btn-secondary" value="Back"/>
+                        </form>
                     </div>
                     <jsp:include page="/jsp/side.jsp"/>
                 </div>

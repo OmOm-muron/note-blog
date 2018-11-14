@@ -30,20 +30,20 @@
                             <div class="col-6"><fmt:formatDate value="${dto.uploadDate}" pattern="yyyy-MM-dd"/></div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="edit" action="edit" method=POST">
-                                        <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-primary" value="Edit"/>
-                                    </form>
-                                    <form id="delete" action="delete" method=POST">
-                                        <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                    <form id="index" action="index" method="GET">
+                                        <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
-                            <h2><c:out value="${dto.title}"/></h2><br/>
-                            <p><c:out value="${dto.content}"/></p><br/>
+                            <c:forEach items="${articleList}" var="article">
+                                <ul>
+                                    <a href="read?<c:out value="${article.id}"/>">
+                                        <c:out value="${article.title}"/>    <c:out value="${article.uploadDate}"/>
+                                    </a>
+                                </ul>
+                            </c:forEach>
                         </div>
                     </div>
                     <jsp:include page="/jsp/side.jsp"/>

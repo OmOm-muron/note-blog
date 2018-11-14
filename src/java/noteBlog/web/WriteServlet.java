@@ -16,7 +16,7 @@ import noteBlog.dto.NoteBlog;
   * @author OmOm-muron
   * ブログの記事の一つを表示する
   */
-@WebServlet("/noteBlog/writeArticle")
+@WebServlet("/noteBlog/write")
 public class WriteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
