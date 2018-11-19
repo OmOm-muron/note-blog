@@ -27,9 +27,9 @@ public class DAO implements AutoCloseable {
     public Connection getConnection() throws Exception {
         //NamingException,SQLExceptionがスローされる
         try {
-            if (connection == null | connection.isClosed()) {
+            if (connection == null || connection.isClosed()) {
                 InitialContext initCtx = new InitialContext();
-                DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/mydb");
+                DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/blog");
                 
                 //データベース接続を取得する
                 connection = ds.getConnection();

@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <jsp:include page="/jsp/header.jsp"/>
-        <title>OmOm-Knowledge</title>
+        <title>オムラの備忘録：投稿</title>
     </head>
   
     <body>
@@ -19,8 +19,8 @@
         <main role="main">
 
             <div class="container">
-                <h1 class="jumbotron-heading">knowledge notes</h1>
-                <p class="lead text-muted">This blog contains my knowledge notes.</p>
+                <h1 class="jumbotron-heading">私の備忘に酔いしれなさい！！</h1>
+                <p class="lead text-muted">オムラの備忘録と銘打っているがただの開発演習である</p>
             </div>
 
             <div class="container">
@@ -39,11 +39,11 @@
                         <form id="write" action="write" method=POST">
                             <div class="container">
                                 <div class="form-group">
-                                    <label for="title">Article Title</label>
+                                    <label for="title">題名</label>
                                     <input type="text" class="form-group" id="title" name="title" value="${dto.title}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="content">Article Content</label>
+                                    <label for="content">本文</label>
                                     <textarea class="form-control" rows="30" id="content" name="content"><c:out value="${dto.content}"/></textarea>
                                 </div>
                                 <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
@@ -54,7 +54,18 @@
                             <input type="submit" class="btn btn-secondary" value="Back"/>
                         </form>
                     </div>
-                    <jsp:include page="/jsp/side.jsp"/>
+                    <div class="col-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">カレンダーをここに表示したい</p>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <c:forEach items="${latestArticleList}" var="article">
+                                    <li><a href="read?id=<c:out value="${article.id}"/>"><c:out value="${article.title}"/>(<c:out value="${article.uploadDate}"/>)</a></li>
+                            </c:forEach>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -62,7 +73,7 @@
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right">
-                    <a href="#">Back to top</a>
+                    <a href="#">画面一番上へ</a>
                 </p>
             </div>
         </footer>

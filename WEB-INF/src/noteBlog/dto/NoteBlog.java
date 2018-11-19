@@ -14,7 +14,7 @@ public class NoteBlog {
     //フィールド：ブログ記事の情報
     private int id;
     private String title;
-    private Timestamp uploadDate;
+    private java.sql.Date uploadDate;
     private String content;
     
     //Getter
@@ -26,7 +26,7 @@ public class NoteBlog {
         return this.title;
     }
     
-    public Timestamp getUploadDate() {
+    public java.sql.Date getUploadDate() {
         return this.uploadDate;
     }
     
@@ -43,7 +43,7 @@ public class NoteBlog {
         this.title = title;
     }
     
-    public void setUploadDate(Timestamp uploadDate) {
+    public void setUploadDate(java.sql.Date uploadDate) {
         this.uploadDate = uploadDate;
     }
     

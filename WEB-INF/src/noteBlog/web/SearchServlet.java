@@ -17,8 +17,8 @@ import noteBlog.dto.NoteBlog;
  * This servlet searches blog articles, and forward to result list.
  */
 
-@WebServlet(urlPatterns={"/noteBlog/search"})
-public class GetListServlet extends HttpServlet {
+@WebServlet("/note-blog/search")
+public class SearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     @Override
@@ -31,6 +31,15 @@ public class GetListServlet extends HttpServlet {
             //記事の一覧をリストで取得し、リクエスト属性へ格納する
             List<NoteBlog> list = dao.getArticleList();
             req.setAttribute("articleList",list);
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
+        
+        //最新5件分DAO取得
+        try(NoteBlogDAO dao = new NoteBlogDAO()) {
+            //最新記事の5件をリストで取得し、リクエスト属性へ格納する
+            List<NoteBlog> list = dao.getLatestArticleList();
+            req.setAttribute("latestArticleList",list);
         } catch (Exception e) {
             throw new ServletException(e);
         }

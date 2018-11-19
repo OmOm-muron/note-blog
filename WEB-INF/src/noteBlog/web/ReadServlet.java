@@ -2,7 +2,7 @@
 package noteBlog.web;
 
 import java.io.*;
-import java.util.*;
+import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -12,28 +12,31 @@ import noteBlog.dto.NoteBlog;
 
 /**
  *
- * @author user01
- * Search Function.
- * This servlet searches blog articles, and forward to result list.
+ * @author OmOm-muron
+ * ブログの記事の一つを表示する
  */
-
-@WebServlet(urlPatterns={"/noteBlog/search"})
-public class SearchServlet extends HttpServlet {
+@WebServlet("/note-blog/read")
+public class ReadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse rsp)
-            throws IOException,ServletException {
+            throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+
+        String articleId = req.getParameter("id");
         
-        //DAO取得
-        try(NoteBlogDAO dao = new NoteBlogDAO()) {
-            //記事の一覧をリストで取得し、リクエスト属性へ格納する
-            List<NoteBlog> list = dao.getArticleList();
-            req.setAttribute("articleList",list);
+        //intへ変換して、daoで処理を行う 表示対象の記事を1つ取得する
+        NoteBlog dto;
+        try (NoteBlogDAO dao = new NoteBlogDAO()) {
+            int id = Integer.parseInt(articleId);
+            
+            dto = dao.readArticle(id);
         } catch (Exception e) {
             throw new ServletException(e);
         }
+        
+        //記事の情報をリクエスト属性へバインド
+        req.setAttribute("dto", dto);
         
         //最新5件分DAO取得
         try(NoteBlogDAO dao = new NoteBlogDAO()) {
@@ -44,14 +47,13 @@ public class SearchServlet extends HttpServlet {
             throw new ServletException(e);
         }
         
-        //検索結果一覧を表示する
-        RequestDispatcher rd = req.getRequestDispatcher("/jsp/search.jsp");
+        //画面を返す
+        RequestDispatcher rd = req.getRequestDispatcher("/jsp/read.jsp");
         rd.forward(req,rsp);
     }
     
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
-            throws ServletException,IOException {
+            throws ServletException, IOException {
         doGet(req,rsp);
-    }   
+    }
 }

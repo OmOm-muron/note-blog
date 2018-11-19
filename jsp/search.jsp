@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <jsp:include page="/jsp/header.jsp"/>
-        <title>OmOm-Knowledge</title>
+        <title>オムラの備忘録：記事一覧</title>
     </head>
   
     <body>
@@ -19,8 +19,8 @@
         <main role="main">
 
             <div class="container">
-                <h1 class="jumbotron-heading">knowledge notes</h1>
-                <p class="lead text-muted">This blog contains my knowledge notes.</p>
+                <h1 class="jumbotron-heading">私の備忘に酔いしれなさい！！</h1>
+                <p class="lead text-muted">オムラの備忘録と銘打っているがただの開発演習である</p>
             </div>
 
             <div class="container">
@@ -39,14 +39,25 @@
                         <div class="text-center">
                             <c:forEach items="${articleList}" var="article">
                                 <ul>
-                                    <a href="read?<c:out value="${article.id}"/>">
+                                    <a href="read?id=<c:out value="${article.id}"/>">
                                         <c:out value="${article.title}"/>    <c:out value="${article.uploadDate}"/>
                                     </a>
                                 </ul>
                             </c:forEach>
                         </div>
                     </div>
-                    <jsp:include page="/jsp/side.jsp"/>
+                    <div class="col-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">カレンダーをここに表示したい</p>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <c:forEach items="${latestArticleList}" var="article">
+                                    <li><a href="read?id=<c:out value="${article.id}"/>"><c:out value="${article.title}"/>(<c:out value="${article.uploadDate}"/>)</a></li>
+                            </c:forEach>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -54,7 +65,7 @@
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right">
-                    <a href="#">Back to top</a>
+                    <a href="#">画面一番上へ</a>
                 </p>
             </div>
         </footer>

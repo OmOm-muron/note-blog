@@ -12,14 +12,14 @@ import noteBlog.dto.NoteBlog;
 public class NoteBlogDAO extends DAO {
     
     /**
-     * 記事の一覧を取得する
+     * 最新記事の5件を取得する
      * @return
      * @throws Exception 
      */
-    public List<NoteBlog> getArticleList() throws Exception {
+    public List<NoteBlog> getLatestArticleList() throws Exception {
         List<NoteBlog> returnList = new ArrayList<NoteBlog>();
         
-        String sql = "SELECT id, title, uploadDate, content FROM articles ORDER BY uploadDate";
+        String sql = "SELECT id, title, uploadDate, content FROM articles ORDER BY id DESC LIMIT 5";
         
         //プリペアドステートメントを取得し、実行SQLを渡す
         PreparedStatement statement = getPreparedStatement(sql);
@@ -34,13 +34,74 @@ public class NoteBlogDAO extends DAO {
             //クエリ結果をVOへ格納
             dto.setId(rs.getInt("id"));
             dto.setTitle(rs.getString("title"));
-            dto.setUploadDate(rs.getTimestamp("uploadDate"));
+            dto.setUploadDate(rs.getDate("uploadDate"));
+            
+            returnList.add(dto);
+        }
+        
+        return returnList;
+    }
+    
+    /**
+     * 記事の一覧を取得する
+     * @return
+     * @throws Exception 
+     */
+    public List<NoteBlog> getArticleList() throws Exception {
+        List<NoteBlog> returnList = new ArrayList<NoteBlog>();
+        
+        String sql = "SELECT id, title, uploadDate, content FROM articles ORDER BY id DESC";
+        
+        //プリペアドステートメントを取得し、実行SQLを渡す
+        PreparedStatement statement = getPreparedStatement(sql);
+        
+        //SQLを実行してその結果を取得する
+        ResultSet rs = statement.executeQuery();
+        
+        //検索結果の行数分、取得結果をNetBlogインスタンスへ格納する
+        while (rs.next()) {
+            NoteBlog dto = new NoteBlog();
+            
+            //クエリ結果をVOへ格納
+            dto.setId(rs.getInt("id"));
+            dto.setTitle(rs.getString("title"));
+            dto.setUploadDate(rs.getDate("uploadDate"));
             dto.setContent(rs.getString("content"));
             
             returnList.add(dto);
         }
         
         return returnList;
+    }
+    
+   /**
+     * 最新の記事一つを抜き出して情報を返す
+     * @param id
+     * @return
+     * @throws Exception 
+     */
+    public NoteBlog readLatestArticle() throws Exception {
+        NoteBlog dto = new NoteBlog();
+        
+        String sql = "SELECT id, title, uploadDate, content FROM articles ORDER BY id DESC LIMIT 1";
+        
+        //PreparedStatement取得、SQLを渡す
+        PreparedStatement statement = getPreparedStatement(sql);
+        
+        //クエリ実行、結果を格納
+        ResultSet rs = statement.executeQuery();
+        
+
+        //検索結果の行数分、取得結果をNetBlogインスタンスへ格納する
+        while (rs.next()) {
+            //NoteBlogインスタンス(dto)に記事の情報を格納
+            dto.setId(rs.getInt("id"));
+            dto.setTitle(rs.getString("title"));
+            dto.setUploadDate(rs.getDate("uploadDate"));
+            dto.setContent(rs.getString("content"));
+        }
+        
+        return dto;
     }
     
     /**
@@ -52,7 +113,7 @@ public class NoteBlogDAO extends DAO {
     public NoteBlog readArticle(int id) throws Exception {
         NoteBlog dto = new NoteBlog();
         
-        String sql = "SELECT ?, title, uploadDate, content FROM articles";
+        String sql = "SELECT id, title, uploadDate, content FROM articles WHERE id = ?";
         
         //PreparedStatement取得、SQLを渡す
         PreparedStatement statement = getPreparedStatement(sql);
@@ -61,10 +122,13 @@ public class NoteBlogDAO extends DAO {
         //クエリ実行、結果を格納
         ResultSet rs = statement.executeQuery();
         
-        //NoteBlogインスタンス(dto)に記事の情報を格納
-        dto.setTitle(rs.getString("title"));
-        dto.setUploadDate(rs.getTimestamp("uploadDate"));
-        dto.setContent(rs.getString("content"));
+        //検索結果の行数分、取得結果をNetBlogインスタンスへ格納する
+        while (rs.next()) {
+            //NoteBlogインスタンス(dto)に記事の情報を格納
+            dto.setTitle(rs.getString("title"));
+            dto.setUploadDate(rs.getDate("uploadDate"));
+            dto.setContent(rs.getString("content"));
+        }
         
         return dto;
     }
@@ -85,7 +149,7 @@ public class NoteBlogDAO extends DAO {
         try {
             PreparedStatement statement = getPreparedStatement(sql);
             statement.setString(1, dto.getTitle());
-            statement.setTimestamp(2, dto.getUploadDate());
+            statement.setDate(2, dto.getUploadDate());
             statement.setString(3, dto.getContent());
             
             result = statement.executeUpdate();

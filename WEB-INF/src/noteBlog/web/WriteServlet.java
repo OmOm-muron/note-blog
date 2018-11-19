@@ -16,7 +16,7 @@ import noteBlog.dto.NoteBlog;
   * @author OmOm-muron
   * ブログの記事の一つを表示する
   */
-@WebServlet("/noteBlog/writeArticle")
+@WebServlet("/note-blog/write")
 public class WriteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class WriteServlet extends HttpServlet {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         
-        Timestamp uploadTime = (Timestamp) new Date();
+        java.sql.Date uploadTime = new java.sql.Date(new java.util.Date().getTime());
 
         //DTOへ格納
         NoteBlog dto = new NoteBlog();
