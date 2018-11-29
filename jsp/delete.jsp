@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <jsp:include page="/jsp/header.jsp"/>
-        <title>オムラの備忘録：<c:out value="${dto.title}"/></title>
+        <title>オムラの備忘録：投稿完了</title>
     </head>
   
     <body>
@@ -27,24 +27,25 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="row">
-                            <div class="col-6"><fmt:formatDate value="${dto.uploadDate}" pattern="yyyy-MM-dd"/></div>
+                            <div class="col-6">
+                                <strong>記事を削除しました</strong>
+                            </div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="edit" action="edit" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}" />
-                                        <input type="submit" class="btn btn-primary disabled" value="Edit"/>
-                                    </form>
-                                    <form id="confirm" action="confirm" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}" />
-                                        <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                    <form id="index" action="index" method="GET">
+                                        <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-left">
-                            <h3><c:out value="${dto.title}"/></h3><br/>
-                            <pre><c:out value="${dto.content}"/></pre>
-                            <br/>
+                        <div class="text-center">
+                            <p>記事の削除が正常に完了しました。</p>
+                            <p>削除件数：<c:out value="${resultCount}"/></p>
+                            <div class="btn-group d-flex justify-content-center" role="group">
+                                <form id="index" action="index" method="GET">
+                                    <input type="submit" class="btn btn-secondary" value="Back"/>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">

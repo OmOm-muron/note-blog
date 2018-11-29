@@ -27,22 +27,25 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="row">
-                            <div class="col-6"><fmt:formatDate value="${dto.uploadDate}" pattern="yyyy-MM-dd"/></div>
+                            <div class="col-6">
+                                <strong>!!※  この記事を本当に削除しますか？ ※!!</strong>
+                            </div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="edit" action="edit" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}" />
-                                        <input type="submit" class="btn btn-primary disabled" value="Edit"/>
+                                    <form id="delete" action="delete" method="POST">
+                                        <input type="hidden" name="id" value="${dto.id}"/>
+                                        <input type="submit" class="btn btn-warning" value="Delete"/>
                                     </form>
-                                    <form id="confirm" action="confirm" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}" />
-                                        <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                    <form id="index" action="index" method="GET">
+                                        <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="text-left">
-                            <h3><c:out value="${dto.title}"/></h3><br/>
+                            <h3>記事タイトル</h3>
+                            <p><c:out value="${dto.title}"/></p><br/>
+                            <h3>内容</h3>
                             <pre><c:out value="${dto.content}"/></pre>
                             <br/>
                         </div>

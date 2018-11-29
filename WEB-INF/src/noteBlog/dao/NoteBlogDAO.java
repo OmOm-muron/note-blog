@@ -125,6 +125,7 @@ public class NoteBlogDAO extends DAO {
         //検索結果の行数分、取得結果をNetBlogインスタンスへ格納する
         while (rs.next()) {
             //NoteBlogインスタンス(dto)に記事の情報を格納
+            dto.setId(rs.getInt("id"));
             dto.setTitle(rs.getString("title"));
             dto.setUploadDate(rs.getDate("uploadDate"));
             dto.setContent(rs.getString("content"));

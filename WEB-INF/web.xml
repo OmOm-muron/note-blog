@@ -51,6 +51,24 @@
     <url-pattern>/write</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ConfirmServlet</servlet-name>
+    <servlet-class>noteBlog.web.ConfirmServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmServlet</servlet-name>
+    <url-pattern>/confirm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>noteBlog.web.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+
   <init-param>
     <param-name>javaEncoding</param-name>
     <param-value>UTF-8</param-value>
