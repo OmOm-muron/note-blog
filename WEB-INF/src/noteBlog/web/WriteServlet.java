@@ -20,7 +20,7 @@ import noteBlog.dto.NoteBlog;
 public class WriteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse rsp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         
@@ -50,9 +50,5 @@ public class WriteServlet extends HttpServlet {
         rd.forward(req,rsp);
     }
     
-    protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
-            throws ServletException, IOException {
-        doGet(req,rsp);
-    }
 }
 

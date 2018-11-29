@@ -40,7 +40,7 @@
                             <c:forEach items="${articleList}" var="article">
                                 <ul>
                                     <a href="read?id=<c:out value="${article.id}"/>">
-                                        <c:out value="${article.title}"/>    <c:out value="${article.uploadDate}"/>
+                                        <c:out value="${article.title}"/>   (<c:out value="${article.uploadDate}"/>)
                                     </a>
                                 </ul>
                             </c:forEach>

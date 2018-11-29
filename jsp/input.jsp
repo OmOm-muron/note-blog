@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div><br/>
-                        <form id="write" action="write" method=POST">
+                        <form id="write" action="write" method="POST">
                             <div class="container">
                                 <div class="form-group">
                                     <label for="title">題名</label>

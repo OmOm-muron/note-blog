@@ -32,18 +32,19 @@
                                 <div class="btn-group d-flex justify-content-end" role="group">
                                     <form id="edit" action="edit" method=POST">
                                         <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-primary" value="Edit"/>
+                                        <input type="submit" class="btn btn-primary disabled" value="Edit"/>
                                     </form>
                                     <form id="delete" action="delete" method=POST">
                                         <input type="hidden" name="id" value="<c:out value="${dto.id}"/>" />
-                                        <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                        <input type="submit" class="btn btn-secondary disabled" value="Delete"/>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <h2><c:out value="${dto.title}"/></h2><br/>
-                            <p><c:out value="${dto.content}"/></p><br/>
+                        <div class="text-left">
+                            <h3><c:out value="${dto.title}"/></h3><br/>
+                            <pre><c:out value="${dto.content}"/></pre>
+                            <br/>
                         </div>
                     </div>
                     <div class="col-4">
