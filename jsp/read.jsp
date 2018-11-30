@@ -32,7 +32,7 @@
                                 <div class="btn-group d-flex justify-content-end" role="group">
                                     <form id="edit" action="edit" method="POST">
                                         <input type="hidden" name="id" value="${dto.id}" />
-                                        <input type="submit" class="btn btn-primary disabled" value="Edit"/>
+                                        <input type="submit" class="btn btn-primary" value="Edit"/>
                                     </form>
                                     <form id="confirm" action="confirm" method="POST">
                                         <input type="hidden" name="id" value="${dto.id}" />

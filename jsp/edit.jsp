@@ -27,29 +27,36 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="row">
-                            <div class="col-6">
-                                <strong>!!※  この記事を本当に削除しますか？ ※!!</strong>
-                            </div>
+                            <div class="col-6"><fmt:formatDate value="${dto.uploadDate}" pattern="yyyy-MM-dd"/></div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="delete" action="delete" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}"/>
-                                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                                    </form>
                                     <form id="read" action="read" method="GET">
-                                        <input type="hidden" name="id" value="${dto.id}"/>
+                                        <input type="hidden" name="id" value="${dto.id}" />
                                         <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-left">
-                            <h3>記事タイトル</h3>
-                            <p><c:out value="${dto.title}"/></p><br/>
-                            <h3>内容</h3>
-                            <pre><c:out value="${dto.content}"/></pre>
-                            <br/>
-                        </div>
+                        </div><br/>
+                        <form id="update" action="update" method="POST">
+                            <div class="container">
+                                <div class="form-group">
+                                    <label for="title">題名</label>
+                                    <input type="text" class="form-group" id="title" name="title" value="${dto.title}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">本文</label>
+                                    <textarea class="form-control" rows="30" id="content" name="content">
+                                        <c:out value="${dto.content}"/>
+                                    </textarea>
+                                </div>
+                                <input type="hidden" name="id" value="${dto.id}"/>
+                                <input type="submit" class="btn btn-primary" value="Submit"/>
+                            </div>
+                        </form><br/>
+                        <form id="read" action="read" method="GET">
+                            <input type="hidden" name="id" value="${dto.id}" />
+                            <input type="submit" class="btn btn-secondary" value="Back"/>
+                        </form>
                     </div>
                     <div class="col-4">
                         <div class="card mb-4 shadow-sm">

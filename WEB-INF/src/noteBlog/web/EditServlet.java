@@ -13,10 +13,10 @@ import noteBlog.dto.NoteBlog;
 /**
  *
  * @author OmOm-muron
- * ブログの記事の一つを削除する
+ * ブログの記事の一つを編集する
  */
-@WebServlet("/note-blog/delete")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/note-blog/edit")
+public class EditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
@@ -26,17 +26,17 @@ public class DeleteServlet extends HttpServlet {
         String articleId = req.getParameter("id");
         
         //intへ変換して、daoで処理を行う 表示対象の記事を1つ取得する
-        int result;
+        NoteBlog dto;
         try (NoteBlogDAO dao = new NoteBlogDAO()) {
             int id = Integer.parseInt(articleId);
             
-            result = dao.deleteArticle(id);
+            dto = dao.readArticle(id);
         } catch (Exception e) {
             throw new ServletException(e);
         }
-
-        //削除件数をリクエスト属性へ格納
-        req.setAttribute("resultCount",result);
+        
+        //記事の情報をリクエスト属性へバインド
+        req.setAttribute("dto", dto);
         
         //最新5件分DAO取得
         try(NoteBlogDAO dao = new NoteBlogDAO()) {
@@ -48,7 +48,7 @@ public class DeleteServlet extends HttpServlet {
         }
         
         //画面を返す
-        RequestDispatcher rd = req.getRequestDispatcher("/jsp/delete.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/jsp/edit.jsp");
         rd.forward(req,rsp);
     }
 }

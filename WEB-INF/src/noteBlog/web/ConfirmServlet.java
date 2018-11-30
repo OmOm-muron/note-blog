@@ -13,7 +13,7 @@ import noteBlog.dto.NoteBlog;
 /**
  *
  * @author OmOm-muron
- * ブログの記事の一つを表示する
+ * ブログの記事の一つを削除する確認画面を開く
  */
 @WebServlet("/note-blog/confirm")
 public class ConfirmServlet extends HttpServlet {

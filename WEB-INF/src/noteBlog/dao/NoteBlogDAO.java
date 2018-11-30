@@ -187,4 +187,37 @@ public class NoteBlogDAO extends DAO {
         
         return result;
     }
+
+    /**
+     * 記事を更新する
+     * @param dto
+     * @return
+     * @throws Exception 
+     */
+    public int updateArticle(NoteBlog dto) throws Exception {
+        String sql = "UPDATE articles SET title = ? , uploadDate = ? , content = ? "
+                + " WHERE id = ? ";
+        
+        //resultを初期化
+        int result = 0;
+        
+        try {
+            PreparedStatement statement = getPreparedStatement(sql);
+            statement.setString(1, dto.getTitle());
+            statement.setDate(2, dto.getUploadDate());
+            statement.setString(3, dto.getContent());
+            statement.setInt(4,dto.getId());
+            
+            result = statement.executeUpdate();
+
+            //コミット
+            super.commit();
+        } catch (Exception e) {
+            super.rollback();
+            throw e;
+        }
+     
+        return result;
+    }
+    
 }

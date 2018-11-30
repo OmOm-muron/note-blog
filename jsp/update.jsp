@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <jsp:include page="/jsp/header.jsp"/>
-        <title>オムラの備忘録：<c:out value="${dto.title}"/></title>
+        <title>オムラの備忘録：投稿完了</title>
     </head>
   
     <body>
@@ -28,27 +28,25 @@
                     <div class="col-8">
                         <div class="row">
                             <div class="col-6">
-                                <strong>!!※  この記事を本当に削除しますか？ ※!!</strong>
+                                <strong>記事の更新が完了しました！</strong>
                             </div>
                             <div class="col-6">
                                 <div class="btn-group d-flex justify-content-end" role="group">
-                                    <form id="delete" action="delete" method="POST">
-                                        <input type="hidden" name="id" value="${dto.id}"/>
-                                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                                    </form>
                                     <form id="read" action="read" method="GET">
-                                        <input type="hidden" name="id" value="${dto.id}"/>
+                                        <input type="hidden" id="id" name="id" value="${dto.id}"/>
                                         <input type="submit" class="btn btn-secondary" value="Back"/>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-left">
-                            <h3>記事タイトル</h3>
-                            <p><c:out value="${dto.title}"/></p><br/>
-                            <h3>内容</h3>
-                            <pre><c:out value="${dto.content}"/></pre>
-                            <br/>
+                        <div class="text-center">
+                            <p>記事の更新が正常に完了しました。</p>
+                            <div class="btn-group d-flex justify-content-center" role="group">
+                                <form id="read" action="read" method="GET">
+                                    <input type="hidden" id="id" name="id" value="${dto.id}"/>
+                                    <input type="submit" class="btn btn-secondary" value="Back"/>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">
